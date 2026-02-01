@@ -3,42 +3,69 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Flight Finder</title>
+  <title>TravelApp</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <header class="hero">
-    <h1>Find your next flight </h1>
-    <p>Fast, simple, and reliable flight search</p>
-  </header>
+  <!-- LOGIN PAGE -->
+  <section id="loginPage" class="page active">
+    <div class="card auth-card">
+      <h1>Welcome Back ✈️</h1>
+      <p>Login to continue</p>
 
-  <main>
-    <section class="search-card">
-      <div class="field">
-        <label>From</label>
-        <input type="text" id="from" placeholder="BOM" />
+      <input type="text" placeholder="Email" />
+      <input type="password" placeholder="Password" />
+
+      <button onclick="goToLanding()">Login</button>
+    </div>
+  </section>
+
+  <!-- LANDING PAGE -->
+  <section id="landingPage" class="page">
+    <header class="hero small">
+      <h1>Where do you want to go?</h1>
+      <p>Search flights or hotels in seconds</p>
+    </header>
+
+    <div class="tabs">
+      <div class="tab flight" onclick="openBooking('flight')">
+        ✈️ Flights
       </div>
-
-      <div class="field">
-        <label>To</label>
-        <input type="text" id="to" placeholder="DEL" />
+      <div class="tab hotel" onclick="openBooking('hotel')">
+        🏨 Hotels
       </div>
+    </div>
+  </section>
 
-      <div class="field">
-        <label>Date</label>
-        <input type="date" id="date" />
-      </div>
+  <!-- BOOKING PAGE -->
+  <section id="bookingPage" class="page">
+    <header class="hero small">
+      <h1 id="bookingTitle">Flight Booking</h1>
+      <p>Find the best deals</p>
+    </header>
 
-      <button id="searchBtn">Search Flights</button>
-    </section>
+    <main>
+      <section class="search-card">
+        <div class="field">
+          <label>From</label>
+          <input type="text" placeholder="BOM" />
+        </div>
 
-    <section id="results" class="results"></section>
-  </main>
+        <div class="field">
+          <label>To</label>
+          <input type="text" placeholder="DEL" />
+        </div>
 
-  <footer>
-    <p>© 2026 TravelApp</p>
-  </footer>
+        <div class="field">
+          <label>Date</label>
+          <input type="date" />
+        </div>
+
+        <button>Search</button>
+      </section>
+    </main>
+  </section>
 
   <script src="app.js"></script>
 </body>
