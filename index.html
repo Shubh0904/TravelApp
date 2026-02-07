@@ -3,67 +3,148 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TravelApp</title>
+  <title>TravelHub - Your Journey Starts Here</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <!-- LOGIN PAGE -->
   <section id="loginPage" class="page active">
-    <div class="card auth-card">
-      <h1>DonkeyKongSaysH</h1>
-      <p>Login to continue</p>
+    <div class="animated-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+    
+    <div class="auth-card">
+      <div class="logo-container">
+        <div class="logo">✈️</div>
+      </div>
+      <h1>Welcome Back</h1>
+      <p class="subtitle">Login to plan your next adventure</p>
 
-      <input type="text" placeholder="Email" />
-      <input type="password" placeholder="Password" />
+      <div class="input-group">
+        <input type="email" placeholder="Email address" required />
+      </div>
+      
+      <div class="input-group">
+        <input type="password" placeholder="Password" required />
+      </div>
 
-      <button onclick="goToLanding()">Login</button>
+      <button class="btn-primary" onclick="goToLanding()">
+        <span>Continue to Dashboard</span>
+        <span class="arrow">→</span>
+      </button>
+      
+      <p class="auth-footer">Don't have an account? <a href="#" class="link">Sign up</a></p>
     </div>
   </section>
 
   <!-- LANDING PAGE -->
   <section id="landingPage" class="page">
-    <header class="hero small">
-      <h1>Where do you want to go?</h1>
-      <p>Search flights or hotels in seconds</p>
+    <div class="animated-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+    
+    <header class="hero">
+      <h1 class="hero-title">Where to next?</h1>
+      <p class="hero-subtitle">Discover amazing destinations and exclusive deals</p>
     </header>
 
-    <div class="tabs">
-      <div class="tab flight" onclick="openBooking('flight')">
-        ✈️ Flights
+    <div class="tabs-container">
+      <div class="tab" onclick="openBooking('flight')">
+        <div class="tab-icon">✈️</div>
+        <h3>Book Flights</h3>
+        <p>Find the best airfare</p>
       </div>
-      <div class="tab hotel" onclick="openBooking('hotel')">
-        🏨 Hotels
+      
+      <div class="tab" onclick="openBooking('hotel')">
+        <div class="tab-icon">🏨</div>
+        <h3>Book Hotels</h3>
+        <p>Comfortable stays await</p>
       </div>
     </div>
   </section>
 
   <!-- BOOKING PAGE -->
   <section id="bookingPage" class="page">
-    <header class="hero small">
-      <h1 id="bookingTitle">Flight Booking</h1>
-      <p>Find the best deals</p>
+    <div class="animated-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+    
+    <header class="hero">
+      <button class="back-btn" onclick="showPage('landing')">← Back</button>
+      <h1 class="hero-title" id="bookingTitle">Flight Booking</h1>
+      <p class="hero-subtitle">Find the perfect option for your journey</p>
     </header>
 
     <main>
-      <section class="search-card">
-        <div class="field">
-          <label>From</label>
-          <input type="text" placeholder="BOM" />
+      <div class="search-card">
+        <div class="field-group">
+          <div class="field">
+            <label>Departure</label>
+            <input type="text" placeholder="Mumbai (BOM)" class="input-modern" />
+          </div>
+
+          <div class="swap-btn">⇄</div>
+
+          <div class="field">
+            <label>Destination</label>
+            <input type="text" placeholder="Delhi (DEL)" class="input-modern" />
+          </div>
         </div>
 
-        <div class="field">
-          <label>To</label>
-          <input type="text" placeholder="DEL" />
+        <div class="field-group">
+          <div class="field">
+            <label>Travel Date</label>
+            <input type="date" class="input-modern date-input" />
+          </div>
+
+          <div class="field">
+            <label>Passengers</label>
+            <select class="input-modern">
+              <option>1 Passenger</option>
+              <option>2 Passengers</option>
+              <option>3 Passengers</option>
+              <option>4+ Passengers</option>
+            </select>
+          </div>
         </div>
 
-        <div class="field">
-          <label>Date</label>
-          <input type="date" />
-        </div>
+        <button class="btn-search">
+          <span>Search Best Deals</span>
+          <span class="search-icon">🔍</span>
+        </button>
+      </div>
 
-        <button>Search</button>
-      </section>
+      <!-- Popular Destinations -->
+      <div class="popular-section">
+        <h2>Popular Destinations</h2>
+        <div class="destination-grid">
+          <div class="destination-card">
+            <div class="dest-icon">🗼</div>
+            <h3>Paris</h3>
+            <p>From ₹45,000</p>
+          </div>
+          <div class="destination-card">
+            <div class="dest-icon">🗽</div>
+            <h3>New York</h3>
+            <p>From ₹65,000</p>
+          </div>
+          <div class="destination-card">
+            <div class="dest-icon">🏔️</div>
+            <h3>Dubai</h3>
+            <p>From ₹28,000</p>
+          </div>
+          <div class="destination-card">
+            <div class="dest-icon">🌸</div>
+            <h3>Tokyo</h3>
+            <p>From ₹52,000</p>
+          </div>
+        </div>
+      </div>
     </main>
   </section>
 
