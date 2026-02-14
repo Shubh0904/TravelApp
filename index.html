@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>TravelHub - Your Journey Starts Here</title>
+  <title>Employee Travel Portal</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -18,134 +18,640 @@
     
     <div class="auth-card">
       <div class="logo-container">
-        <div class="logo">✈️</div>
+        <div class="logo">🏢</div>
       </div>
-      <h1>Welcome Back</h1>
-      <p class="subtitle">Login to plan your next adventure</p>
+      <h1>Employee Portal</h1>
+      <p class="subtitle">Sign in to manage your business travel</p>
 
       <div class="input-group">
-        <input type="email" placeholder="Email address" required />
+        <input type="email" placeholder="Employee Email" required />
       </div>
       
       <div class="input-group">
         <input type="password" placeholder="Password" required />
       </div>
 
-      <button class="btn-primary" onclick="goToLanding()">
-        <span>Continue to Dashboard</span>
+      <button class="btn-primary" onclick="goToDashboard()">
+        <span>Sign In</span>
         <span class="arrow">→</span>
       </button>
       
-      <p class="auth-footer">Don't have an account? <a href="#" class="link">Sign up</a></p>
+      <p class="auth-footer">Need help? <a href="#" class="link">Contact IT Support</a></p>
     </div>
   </section>
 
-  <!-- LANDING PAGE -->
-  <section id="landingPage" class="page">
+  <!-- DASHBOARD PAGE -->
+  <section id="dashboardPage" class="page dashboard-layout">
     <div class="animated-bg">
       <div class="blob blob-1"></div>
       <div class="blob blob-2"></div>
     </div>
-    
-    <header class="hero">
-      <h1 class="hero-title">Where to next?</h1>
-      <p class="hero-subtitle">Discover amazing destinations and exclusive deals</p>
-    </header>
 
-    <div class="tabs-container">
-      <div class="tab" onclick="openBooking('flight')">
-        <div class="tab-icon">✈️</div>
-        <h3>Book Flights</h3>
-        <p>Find the best airfare</p>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="company-logo">🏢</div>
+        <h2>Travel Portal</h2>
       </div>
-      
-      <div class="tab" onclick="openBooking('hotel')">
-        <div class="tab-icon">🏨</div>
-        <h3>Book Hotels</h3>
-        <p>Comfortable stays await</p>
-      </div>
-    </div>
-  </section>
 
-  <!-- BOOKING PAGE -->
-  <section id="bookingPage" class="page">
-    <div class="animated-bg">
-      <div class="blob blob-1"></div>
-      <div class="blob blob-2"></div>
-    </div>
-    
-    <header class="hero">
-      <button class="back-btn" onclick="showPage('landing')">← Back</button>
-      <h1 class="hero-title" id="bookingTitle">Flight Booking</h1>
-      <p class="hero-subtitle">Find the perfect option for your journey</p>
-    </header>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <h3 class="nav-title">Travel</h3>
+          <a href="#" class="nav-item" onclick="openBooking('flight')">
+            <span class="nav-icon">✈️</span>
+            <span>Flights</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('hotel')">
+            <span class="nav-icon">🏨</span>
+            <span>Hotels</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('cab')">
+            <span class="nav-icon">🚖</span>
+            <span>Cabs</span>
+          </a>
+        </div>
 
-    <main>
-      <div class="search-card">
-        <div class="field-group">
-          <div class="field">
-            <label>Departure</label>
-            <input type="text" placeholder="Mumbai (BOM)" class="input-modern" />
+        <div class="nav-section">
+          <h3 class="nav-title">Claims</h3>
+          <a href="#" class="nav-item" onclick="openClaim('petty-cash')">
+            <span class="nav-icon">💵</span>
+            <span>Petty Cash Claims</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openClaim('reimbursement')">
+            <span class="nav-icon">💳</span>
+            <span>Re-allocation Reimbursement</span>
+          </a>
+        </div>
+
+        <div class="nav-section">
+          <a href="#" class="nav-item" onclick="showPage('yourClaims')">
+            <span class="nav-icon">📋</span>
+            <span>Your Claims</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Dashboard Content -->
+    <div class="main-content">
+      <!-- Top Bar -->
+      <header class="top-bar">
+        <h1 class="page-title">Dashboard</h1>
+        
+        <div class="account-section">
+          <div class="account-dropdown" onclick="toggleAccountMenu(event)">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic">
+            <span class="account-name">John Doe</span>
+            <span class="dropdown-arrow">▼</span>
           </div>
 
-          <div class="swap-btn">⇄</div>
+          <!-- Account Menu -->
+          <div class="account-menu" id="accountMenu">
+            <div class="menu-header">
+              <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic-large">
+              <div class="menu-user-info">
+                <h3>John Doe</h3>
+                <p>EMP-2024-001</p>
+              </div>
+            </div>
+            <div class="menu-divider"></div>
+            <a href="#" class="menu-item" onclick="showPage('accountSettings')">
+              <span>⚙️</span> Account Settings
+            </a>
+            <a href="#" class="menu-item" onclick="showPage('loginPage')">
+              <span>🚪</span> Sign Out
+            </a>
+          </div>
+        </div>
+      </header>
 
-          <div class="field">
-            <label>Destination</label>
-            <input type="text" placeholder="Delhi (DEL)" class="input-modern" />
+      <!-- Dashboard Cards -->
+      <div class="dashboard-content">
+        <div class="welcome-section">
+          <h2>Welcome back, John! 👋</h2>
+          <p>Manage your business travel and expense claims efficiently</p>
+        </div>
+
+        <div class="quick-actions">
+          <div class="action-card" onclick="openBooking('flight')">
+            <div class="action-icon">✈️</div>
+            <h3>Book Flight</h3>
+            <p>Search and book flights</p>
+          </div>
+
+          <div class="action-card" onclick="openBooking('hotel')">
+            <div class="action-icon">🏨</div>
+            <h3>Book Hotel</h3>
+            <p>Find accommodation</p>
+          </div>
+
+          <div class="action-card" onclick="openBooking('cab')">
+            <div class="action-icon">🚖</div>
+            <h3>Book Cab</h3>
+            <p>Arrange transportation</p>
+          </div>
+
+          <div class="action-card" onclick="openClaim('petty-cash')">
+            <div class="action-icon">💵</div>
+            <h3>File Claim</h3>
+            <p>Submit expense claims</p>
           </div>
         </div>
 
-        <div class="field-group">
-          <div class="field">
-            <label>Travel Date</label>
-            <input type="date" class="input-modern date-input" />
+        <!-- Recent Activity -->
+        <div class="stats-section">
+          <h2>Recent Activity</h2>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h4>Pending Claims</h4>
+              <p class="stat-number">3</p>
+            </div>
+            <div class="stat-card">
+              <h4>Approved This Month</h4>
+              <p class="stat-number">₹12,450</p>
+            </div>
+            <div class="stat-card">
+              <h4>Upcoming Trips</h4>
+              <p class="stat-number">2</p>
+            </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-          <div class="field">
-            <label>Passengers</label>
-            <select class="input-modern">
-              <option>1 Passenger</option>
-              <option>2 Passengers</option>
-              <option>3 Passengers</option>
-              <option>4+ Passengers</option>
+  <!-- BOOKING PAGE (Flight/Hotel/Cab) -->
+  <section id="bookingPage" class="page dashboard-layout">
+    <div class="animated-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="company-logo">🏢</div>
+        <h2>Travel Portal</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <h3 class="nav-title">Travel</h3>
+          <a href="#" class="nav-item" onclick="openBooking('flight')">
+            <span class="nav-icon">✈️</span>
+            <span>Flights</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('hotel')">
+            <span class="nav-icon">🏨</span>
+            <span>Hotels</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('cab')">
+            <span class="nav-icon">🚖</span>
+            <span>Cabs</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-title">Claims</h3>
+          <a href="#" class="nav-item" onclick="openClaim('petty-cash')">
+            <span class="nav-icon">💵</span>
+            <span>Petty Cash Claims</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openClaim('reimbursement')">
+            <span class="nav-icon">💳</span>
+            <span>Re-allocation Reimbursement</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <a href="#" class="nav-item" onclick="showPage('yourClaims')">
+            <span class="nav-icon">📋</span>
+            <span>Your Claims</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-bar">
+        <div class="breadcrumb">
+          <a href="#" onclick="showPage('dashboardPage')">Dashboard</a>
+          <span>/</span>
+          <span id="bookingBreadcrumb">Flights</span>
+        </div>
+        <div class="account-section">
+          <div class="account-dropdown" onclick="toggleAccountMenu(event)">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic">
+            <span class="account-name">John Doe</span>
+            <span class="dropdown-arrow">▼</span>
+          </div>
+          <div class="account-menu" id="accountMenu2">
+            <div class="menu-header">
+              <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic-large">
+              <div class="menu-user-info">
+                <h3>John Doe</h3>
+                <p>EMP-2024-001</p>
+              </div>
+            </div>
+            <div class="menu-divider"></div>
+            <a href="#" class="menu-item" onclick="showPage('accountSettings')">
+              <span>⚙️</span> Account Settings
+            </a>
+            <a href="#" class="menu-item" onclick="showPage('loginPage')">
+              <span>🚪</span> Sign Out
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <h1 class="page-heading" id="bookingTitle">✈️ Book Flight</h1>
+        
+        <div class="booking-form" id="bookingFormContainer">
+          <!-- Content loaded dynamically -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPENSE CLAIM PAGE -->
+  <section id="claimPage" class="page dashboard-layout">
+    <div class="animated-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="company-logo">🏢</div>
+        <h2>Travel Portal</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <h3 class="nav-title">Travel</h3>
+          <a href="#" class="nav-item" onclick="openBooking('flight')">
+            <span class="nav-icon">✈️</span>
+            <span>Flights</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('hotel')">
+            <span class="nav-icon">🏨</span>
+            <span>Hotels</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('cab')">
+            <span class="nav-icon">🚖</span>
+            <span>Cabs</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-title">Claims</h3>
+          <a href="#" class="nav-item" onclick="openClaim('petty-cash')">
+            <span class="nav-icon">💵</span>
+            <span>Petty Cash Claims</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openClaim('reimbursement')">
+            <span class="nav-icon">💳</span>
+            <span>Re-allocation Reimbursement</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <a href="#" class="nav-item" onclick="showPage('yourClaims')">
+            <span class="nav-icon">📋</span>
+            <span>Your Claims</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-bar">
+        <div class="breadcrumb">
+          <a href="#" onclick="showPage('dashboardPage')">Dashboard</a>
+          <span>/</span>
+          <span id="claimBreadcrumb">File Claim</span>
+        </div>
+        <div class="account-section">
+          <div class="account-dropdown" onclick="toggleAccountMenu(event)">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic">
+            <span class="account-name">John Doe</span>
+            <span class="dropdown-arrow">▼</span>
+          </div>
+          <div class="account-menu" id="accountMenu3">
+            <div class="menu-header">
+              <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic-large">
+              <div class="menu-user-info">
+                <h3>John Doe</h3>
+                <p>EMP-2024-001</p>
+              </div>
+            </div>
+            <div class="menu-divider"></div>
+            <a href="#" class="menu-item" onclick="showPage('accountSettings')">
+              <span>⚙️</span> Account Settings
+            </a>
+            <a href="#" class="menu-item" onclick="showPage('loginPage')">
+              <span>🚪</span> Sign Out
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <h1 class="page-heading" id="claimTitle">💵 Petty Cash Claim</h1>
+        
+        <div class="claim-form-card">
+          <div class="form-section">
+            <label class="form-label">Claim Type</label>
+            <select class="form-input" id="claimType">
+              <option>Petty Cash</option>
+              <option>Re-allocation Reimbursement</option>
             </select>
           </div>
-        </div>
 
-        <button class="btn-search">
-          <span>Search Best Deals</span>
-          <span class="search-icon">🔍</span>
-        </button>
-      </div>
+          <div class="form-section">
+            <label class="form-label">Expense Description</label>
+            <textarea class="form-input form-textarea" placeholder="Enter expense name and provide a brief description..." rows="4"></textarea>
+            <p class="form-hint">Be specific about what the expense was for</p>
+          </div>
 
-      <!-- Popular Destinations -->
-      <div class="popular-section">
-        <h2>Popular Destinations</h2>
-        <div class="destination-grid">
-          <div class="destination-card">
-            <div class="dest-icon">🗼</div>
-            <h3>Paris</h3>
-            <p>From ₹45,000</p>
+          <div class="form-section">
+            <label class="form-label">Expense Amount (₹)</label>
+            <input type="number" class="form-input" placeholder="0.00" step="0.01" />
+            <p class="form-hint">Enter the total amount including taxes</p>
           </div>
-          <div class="destination-card">
-            <div class="dest-icon">🗽</div>
-            <h3>New York</h3>
-            <p>From ₹65,000</p>
+
+          <div class="form-section">
+            <label class="form-label">Expense Date</label>
+            <input type="date" class="form-input" />
           </div>
-          <div class="destination-card">
-            <div class="dest-icon">🏔️</div>
-            <h3>Dubai</h3>
-            <p>From ₹28,000</p>
+
+          <div class="form-section">
+            <label class="form-label">Upload Receipt</label>
+            <div class="file-upload-area" onclick="document.getElementById('receiptUpload').click()">
+              <div class="upload-icon">📎</div>
+              <p class="upload-text">Click to upload or drag and drop</p>
+              <p class="upload-hint">PDF, JPG, PNG (Max 5MB)</p>
+              <input type="file" id="receiptUpload" accept=".pdf,.jpg,.jpeg,.png" style="display: none;" onchange="handleFileUpload(this)" />
+            </div>
+            <div id="uploadedFileName" class="uploaded-file"></div>
           </div>
-          <div class="destination-card">
-            <div class="dest-icon">🌸</div>
-            <h3>Tokyo</h3>
-            <p>From ₹52,000</p>
+
+          <div class="form-actions">
+            <button class="btn-secondary" onclick="showPage('dashboardPage')">Cancel</button>
+            <button class="btn-primary" onclick="submitClaim()">
+              <span>Submit Claim</span>
+              <span class="arrow">→</span>
+            </button>
           </div>
         </div>
       </div>
-    </main>
+    </div>
+  </section>
+
+  <!-- YOUR CLAIMS PAGE -->
+  <section id="yourClaims" class="page dashboard-layout">
+    <div class="animated-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="company-logo">🏢</div>
+        <h2>Travel Portal</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <h3 class="nav-title">Travel</h3>
+          <a href="#" class="nav-item" onclick="openBooking('flight')">
+            <span class="nav-icon">✈️</span>
+            <span>Flights</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('hotel')">
+            <span class="nav-icon">🏨</span>
+            <span>Hotels</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('cab')">
+            <span class="nav-icon">🚖</span>
+            <span>Cabs</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-title">Claims</h3>
+          <a href="#" class="nav-item" onclick="openClaim('petty-cash')">
+            <span class="nav-icon">💵</span>
+            <span>Petty Cash Claims</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openClaim('reimbursement')">
+            <span class="nav-icon">💳</span>
+            <span>Re-allocation Reimbursement</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <a href="#" class="nav-item active">
+            <span class="nav-icon">📋</span>
+            <span>Your Claims</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-bar">
+        <h1 class="page-title">Your Claims</h1>
+        <div class="account-section">
+          <div class="account-dropdown" onclick="toggleAccountMenu(event)">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic">
+            <span class="account-name">John Doe</span>
+            <span class="dropdown-arrow">▼</span>
+          </div>
+          <div class="account-menu" id="accountMenu4">
+            <div class="menu-header">
+              <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic-large">
+              <div class="menu-user-info">
+                <h3>John Doe</h3>
+                <p>EMP-2024-001</p>
+              </div>
+            </div>
+            <div class="menu-divider"></div>
+            <a href="#" class="menu-item" onclick="showPage('accountSettings')">
+              <span>⚙️</span> Account Settings
+            </a>
+            <a href="#" class="menu-item" onclick="showPage('loginPage')">
+              <span>🚪</span> Sign Out
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <div class="claims-table-container">
+          <table class="claims-table">
+            <thead>
+              <tr>
+                <th>Claim ID</th>
+                <th>Description</th>
+                <th>Amount</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>#CLM-001</td>
+                <td>Client Dinner - Mumbai</td>
+                <td>₹3,250</td>
+                <td>Feb 10, 2026</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+                <td><button class="btn-table">View</button></td>
+              </tr>
+              <tr>
+                <td>#CLM-002</td>
+                <td>Taxi to Airport</td>
+                <td>₹850</td>
+                <td>Feb 8, 2026</td>
+                <td><span class="status-badge status-approved">Approved</span></td>
+                <td><button class="btn-table">View</button></td>
+              </tr>
+              <tr>
+                <td>#CLM-003</td>
+                <td>Hotel Stay - Delhi</td>
+                <td>₹8,500</td>
+                <td>Feb 5, 2026</td>
+                <td><span class="status-badge status-approved">Approved</span></td>
+                <td><button class="btn-table">View</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACCOUNT SETTINGS PAGE -->
+  <section id="accountSettings" class="page dashboard-layout">
+    <div class="animated-bg">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="company-logo">🏢</div>
+        <h2>Travel Portal</h2>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-section">
+          <h3 class="nav-title">Travel</h3>
+          <a href="#" class="nav-item" onclick="openBooking('flight')">
+            <span class="nav-icon">✈️</span>
+            <span>Flights</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('hotel')">
+            <span class="nav-icon">🏨</span>
+            <span>Hotels</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openBooking('cab')">
+            <span class="nav-icon">🚖</span>
+            <span>Cabs</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <h3 class="nav-title">Claims</h3>
+          <a href="#" class="nav-item" onclick="openClaim('petty-cash')">
+            <span class="nav-icon">💵</span>
+            <span>Petty Cash Claims</span>
+          </a>
+          <a href="#" class="nav-item" onclick="openClaim('reimbursement')">
+            <span class="nav-icon">💳</span>
+            <span>Re-allocation Reimbursement</span>
+          </a>
+        </div>
+        <div class="nav-section">
+          <a href="#" class="nav-item" onclick="showPage('yourClaims')">
+            <span class="nav-icon">📋</span>
+            <span>Your Claims</span>
+          </a>
+        </div>
+      </nav>
+    </aside>
+
+    <div class="main-content">
+      <header class="top-bar">
+        <div class="breadcrumb">
+          <a href="#" onclick="showPage('dashboardPage')">Dashboard</a>
+          <span>/</span>
+          <span>Account Settings</span>
+        </div>
+        <div class="account-section">
+          <div class="account-dropdown" onclick="toggleAccountMenu(event)">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic">
+            <span class="account-name">John Doe</span>
+            <span class="dropdown-arrow">▼</span>
+          </div>
+          <div class="account-menu" id="accountMenu5">
+            <div class="menu-header">
+              <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff" alt="Profile" class="profile-pic-large">
+              <div class="menu-user-info">
+                <h3>John Doe</h3>
+                <p>EMP-2024-001</p>
+              </div>
+            </div>
+            <div class="menu-divider"></div>
+            <a href="#" class="menu-item" onclick="showPage('accountSettings')">
+              <span>⚙️</span> Account Settings
+            </a>
+            <a href="#" class="menu-item" onclick="showPage('loginPage')">
+              <span>🚪</span> Sign Out
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <div class="dashboard-content">
+        <h1 class="page-heading">⚙️ Account Settings</h1>
+        
+        <div class="settings-card">
+          <div class="settings-section">
+            <h3>Profile Picture</h3>
+            <div class="profile-upload">
+              <img src="https://ui-avatars.com/api/?name=John+Doe&background=6366f1&color=fff&size=120" alt="Profile" class="profile-pic-preview">
+              <button class="btn-upload" onclick="document.getElementById('profilePicUpload').click()">
+                Change Picture
+              </button>
+              <input type="file" id="profilePicUpload" accept="image/*" style="display: none;" />
+            </div>
+          </div>
+
+          <div class="settings-section">
+            <h3>Personal Information</h3>
+            <div class="form-grid">
+              <div class="form-section">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-input" value="John Doe" />
+              </div>
+              
+              <div class="form-section">
+                <label class="form-label">Employee Code</label>
+                <input type="text" class="form-input" value="EMP-2024-001" readonly />
+              </div>
+              
+              <div class="form-section">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-input" value="john.doe@company.com" readonly />
+              </div>
+              
+              <div class="form-section">
+                <label class="form-label">Department</label>
+                <input type="text" class="form-input" value="Sales" />
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn-secondary" onclick="showPage('dashboardPage')">Cancel</button>
+            <button class="btn-primary">
+              <span>Save Changes</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <script src="app.js"></script>
