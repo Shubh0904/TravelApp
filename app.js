@@ -1,13 +1,25 @@
-const pages = {
-  loginPage: document.getElementById("loginPage"),
-  dashboardPage: document.getElementById("dashboardPage"),
-  bookingPage: document.getElementById("bookingPage"),
-  claimPage: document.getElementById("claimPage"),
-  yourClaims: document.getElementById("yourClaims"),
-  accountSettings: document.getElementById("accountSettings")
-};
+let pages = {};
+
+// Initialize pages object after DOM loads
+function initPages() {
+  pages = {
+    loginPage: document.getElementById("loginPage"),
+    dashboardPage: document.getElementById("dashboardPage"),
+    bookingPage: document.getElementById("bookingPage"),
+    claimPage: document.getElementById("claimPage"),
+    yourClaims: document.getElementById("yourClaims"),
+    accountSettings: document.getElementById("accountSettings")
+  };
+}
 
 function showPage(pageName) {
+  // Make sure pages are initialized
+  if (!pages.loginPage) {
+    initPages();
+  }
+  
+  console.log('Showing page:', pageName);
+  
   // Hide all pages
   Object.values(pages).forEach(page => {
     if (page) page.classList.remove("active");
@@ -16,6 +28,9 @@ function showPage(pageName) {
   // Show requested page
   if (pages[pageName]) {
     pages[pageName].classList.add("active");
+    console.log('Page activated:', pageName);
+  } else {
+    console.error('Page not found:', pageName);
   }
   
   // Close any open account menus
@@ -329,6 +344,9 @@ document.addEventListener('click', function(event) {
 
 // Auto-focus first input on login page
 document.addEventListener('DOMContentLoaded', function() {
+  // Initialize pages
+  initPages();
+  
   const loginInput = document.querySelector('#loginPage input[type="email"]');
   if (loginInput) {
     setTimeout(() => loginInput.focus(), 500);
